@@ -16,7 +16,7 @@ public class SolutionTest {
         Solution s = new Solution();
         Assert.assertEquals(s.compareVersion("1.01","1.001"),0);
         Assert.assertEquals(s.compareVersion("1.0","1.00"),0);
-        Assert.assertEquals(s.compareVersion("0.1","1.1"),-10);
+        Assert.assertEquals(s.compareVersion("0.1","1.1"),-1);
     }
 
 
