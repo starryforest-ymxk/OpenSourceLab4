@@ -35,16 +35,17 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
 
-      - name: Auto merge PR
-        uses: pascalgn/automerge-action@v0.14.3
-        with:
+      - id: automerge
+        name: Auto merge PR
+        uses: "pascalgn/automerge-action@v0.15.6"
+        env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_METHOD: "squash"  # 可以是 merge, squash 或 rebase
-          MERGE_COMMIT_MESSAGE: "pull-request-description"  # 可以是 pull-request-title, pull-request-description, pull-request-title-and-description, github-default
+          MERGE_METHOD: "merge"
+          MERGE_COMMIT_MESSAGE: "pull-request-description"
           MERGE_LABELS: "automerge,!wip,!work in progress,!do not merge"
           UPDATE_LABELS: ""
           MERGE_FILTER_AUTHOR: ""
           MERGE_RETRIES: "6"
           MERGE_RETRY_SLEEP: "10000"
           MERGE_DELETE_BRANCH: "true"
-          UPDATE_METHOD: "rebase"  # 可以是 merge 或 rebase
+          UPDATE_METHOD: "rebase"
