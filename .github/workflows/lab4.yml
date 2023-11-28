@@ -3,7 +3,7 @@ name: CI and Auto Merge
 on:
   push:
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened]
 
 jobs:
   test:
@@ -30,7 +30,7 @@ jobs:
   auto-merge:
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event_name == 'pull_request'
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
